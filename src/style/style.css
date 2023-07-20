@@ -3,7 +3,7 @@ body{
     color: white;
 }
 
-.search--space::placeholder{
+.search--space::placeholder,.country--space::placeholder{
     color: white;
 }
 
@@ -16,7 +16,7 @@ body{
     padding: 0 30px;
 }
 
-.search--space{
+.search--space,.country--space{
     color: white;
     width: 300px;
     letter-spacing: 1px;
@@ -88,16 +88,46 @@ body{
 }
 
 .unit{
-    min-width: 200px;
+    display: flex;
+    background-color: grey;
+    align-items: center;
+    border: 1px solid white;
 }
 
 .temp--unit{
     height: 35px;
     background-color: grey;
     color: white;
-    padding: 0 10px;
-    border-radius: 10px;
     outline: none;
-    border: 1px solid white;
     font-size: 16px;
+    border-left: 1px solid white;
+    padding: 0 2px;
+}
+
+.country--space{
+    width: 200px;
+    border: none;
+}
+
+.country--space--container{
+    position: relative;
+    text-align: center;
+}
+
+.country--dropdown{
+    position: absolute;
+    background-color: grey; 
+    width: 100%;   
+    list-style: none;
+    padding: 0;
+    margin: 1px 0 0 0;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.country--dropdown li{
+    border-bottom: 1px solid white;
+    padding: 10px 0;
+    font-weight: 600;
+    cursor: pointer;
 }
