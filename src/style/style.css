@@ -114,7 +114,7 @@ body{
     text-align: center;
 }
 
-.country--dropdown{
+.country--dropdown, .city--dropdown{
     position: absolute;
     background-color: grey; 
     width: 100%;   
@@ -125,9 +125,14 @@ body{
     border-left: 1px solid white;
 }
 
-.country--dropdown li{
+.city--dropdown{
+    width: 300px;
+}
+
+.country--dropdown li, .city--dropdown li{
     border-bottom: 1px solid white;
     padding: 10px 0;
     font-weight: 600;
     cursor: pointer;
+    text-align: center;
 }
