@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './nav.css'
 
 export default function Navbar(){
     let options = ['Today','Hourly','Daily','Historical Maps','3 Days']

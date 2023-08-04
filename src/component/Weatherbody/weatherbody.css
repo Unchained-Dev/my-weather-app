@@ -1,0 +1,128 @@
+.current--container{
+    background-color: rgb(22, 22, 22);
+    width: 350px;
+    padding: 0 20px 20px 20px;
+    display: flex;
+    border-radius: 6px;
+}
+
+.current--right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.current--left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.current--right img{
+    height: 200px;
+    text-align: left;
+}
+
+.current--location h2{
+    margin-bottom: 5px;
+}
+
+.current--temp{
+    font-size: 80px;
+    text-align: left;
+}
+
+.daily{
+    display: flex;
+}
+
+.daily--container{
+    background-color: rgb(22, 22, 22);
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin-left: 20px;
+}
+
+.daily--forecast{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid rgb(49, 49, 49);
+    padding: 0 20px;
+}
+
+.row{
+    display: flex;
+    margin: 20px 0 0 20px;
+}
+
+.daily--maximum{
+    font-weight: 700;
+    font-size: 25px;
+    color: rgb(185, 185, 185);
+}
+
+.daily--minimum{
+    color: rgb(185, 185, 185);
+    font-size: 18px;
+}
+
+.daily--date{
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.today--details{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(22, 22, 22);
+    font-size: 18px;
+}
+
+.today--header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(49, 49, 49);
+    padding: 15px 10px;
+}
+
+.today--information{
+    display: flex;
+}
+
+.today--temp--details{
+    display: flex;
+    margin: 20px 0;
+}
+
+.today--temp--details img{
+    height: 80px;
+    align-items: center;
+}
+
+.today--temp{
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+}
+
+.today--information{
+    padding: 20px 0;
+}
+
+.today--forecast{
+    padding-left: 15px;
+}
+
+.today--left,.today--right{
+    padding: 0 15px;
+}
+
+.today--row{
+    padding:15px 0;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(49, 49, 49);
+}

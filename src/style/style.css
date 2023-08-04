@@ -1,138 +1,15 @@
 body{
     margin: 0;
     color: white;
+    background-color: rgb(185, 185, 185);
 }
 
-.search--space::placeholder,.country--space::placeholder{
-    color: white;
-}
 
-.main--header{
-    background-color: black;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-}
 
-.search--space,.country--space{
-    color: white;
-    width: 300px;
-    letter-spacing: 1px;
-    font-size: 16px;
-    text-align: center;
-    height: 100%;
-    background: none;
-    height: 35px;
-    border: none;
-    outline: none;
-    border-right: 1px solid white;
-}
 
-.search--icon{
-    height: 25px;
-    margin: 0 10px;
-}
 
-.search--space--container{
-    display: flex;
-    align-items: center;
-    background-color: grey;
-    margin: 0;
-    padding: 0;
-    height: fit-content;
-    border: 1px solid white;
-    border-radius: 10px;
-}
 
-.nav--buttons{
-    border: none;
-    background: none;
-    color: white;
-    font-size: 16px;
-    padding: 15px 15px;
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
-    min-width: 150px;
-    transition: all 300ms;
-}
 
-.nav--buttons:hover{
-    background-color: grey;
-}
 
-.nav--buttons-container::-webkit-scrollbar{
-    display: none;
-}
 
-.nav--buttons-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: rgb(22, 22, 22);
-    overflow-x: scroll;
-    scrollbar-width: none;
-}
 
-.icon--container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: 700;
-}
-
-.weather--icon{
-    margin-right: 15px;
-}
-
-.unit{
-    display: flex;
-    background-color: grey;
-    align-items: center;
-    border: 1px solid white;
-}
-
-.temp--unit{
-    height: 35px;
-    background-color: grey;
-    color: white;
-    outline: none;
-    font-size: 16px;
-    border-left: 1px solid white;
-    padding: 0 2px;
-}
-
-.country--space{
-    width: 200px;
-    border: none;
-}
-
-.country--space--container{
-    position: relative;
-    text-align: center;
-}
-
-.country--dropdown, .city--dropdown{
-    position: absolute;
-    background-color: grey; 
-    width: 100%;   
-    list-style: none;
-    padding: 0;
-    margin: 1px 0 0 0;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-}
-
-.city--dropdown{
-    width: 300px;
-}
-
-.country--dropdown li, .city--dropdown li{
-    border-bottom: 1px solid white;
-    padding: 10px 0;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-}

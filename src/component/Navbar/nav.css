@@ -1,0 +1,28 @@
+.nav--buttons{
+    border: none;
+    background: none;
+    color: white;
+    font-size: 16px;
+    padding: 15px 15px;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    min-width: 150px;
+    transition: all 300ms;
+}
+
+.nav--buttons:hover{
+    background-color: grey;
+}
+
+.nav--buttons-container::-webkit-scrollbar{
+    display: none;
+}
+
+.nav--buttons-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(22, 22, 22);
+    overflow-x: scroll;
+    scrollbar-width: none;
+}

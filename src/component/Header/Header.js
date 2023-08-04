@@ -1,11 +1,9 @@
 import React from "react";
-import weatherIcon from '../Images/Weather Icon.png'
-import searchIcon from '../Images/search icon.png'
 import {Country, State,City} from 'country-state-city'
+import style from './header.css'
 
-export default function Header(){
+export default function Header({country, setCountry}){
     const countries = Country.getAllCountries()
-    const [country,setCountry] = React.useState({name:'',iso:''})
     const [city, setCity] = React.useState({name: '', stateCode: '', longitude: '', latitude: ''})
     const [countrySuggestions, setCountrySuggestions] = React.useState([])
     const [citySuggestions, setCitySuggestions] = React.useState([])
@@ -90,7 +88,7 @@ export default function Header(){
     return(
         <header className="main--header">
             <div className="icon--container">
-                <img src={weatherIcon} className="weather--icon" alt="logo"></img>
+                <img src='./icons/weather_icon.png' className="weather--icon" alt="logo"></img>
                 <h2>My Weather</h2>
             </div>
             <div className="search--suggestion--container">
@@ -102,7 +100,7 @@ export default function Header(){
                         onChange={event=>handleCityChange(event)}
                         value={city.name}>
                     </input>
-                    <img src={searchIcon} className="search--icon" alt="search-icon"></img>
+                    <img src='./icons/search_icon.png' className="search--icon" alt="search-icon"></img>
                 </div>
                 <ul className="city--dropdown">{citySuggestions}</ul>
             </div>
