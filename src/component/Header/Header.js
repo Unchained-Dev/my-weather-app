@@ -39,19 +39,22 @@ export default function Header({country, setCountry}){
     React.useEffect(()=>{
         let startWith = country.name.toLowerCase()
         setCountrySuggestions(()=>{
-            return(
-                countries.filter(element=>{
-                    let test = element.name.toLowerCase()
-                    return(
-                        country.name && test.startsWith(startWith) && 
-                        test !== startWith)
-                }).slice(0,10)
-                .map(element=><li 
-                    onClick={event=>handleClick(event)} 
-                    key={element.isoCode}
-                    id={element.isoCode}
-                    >{element.name}</li>)
-            )
+            let nameExists = countries.some(element => element.name === country.name);
+            if (!nameExists){
+                return(
+                    countries.filter(element=>{
+                        let test = element.name.toLowerCase()
+                        return(
+                            country.name && test.startsWith(startWith) && 
+                            test !== startWith)
+                    }).slice(0,10)
+                    .map(element=><li 
+                        onClick={event=>handleClick(event)} 
+                        key={element.name}
+                        id={element.isoCode}
+                        >{element.name}</li>)
+                )
+            }else{setCountry(country)};
         })
     }, [country])
 
