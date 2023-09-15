@@ -2,7 +2,7 @@ import React from "react";
 import {Country, State,City} from 'country-state-city'
 import './header.css'
 
-export default function Header({country, setCountry}){
+export default function Header({country, setCountry, handleSearch}){
     const countries = Country.getAllCountries()
     const [city, setCity] = React.useState({name: '', stateCode: '', longitude: '', latitude: ''})
     const [countrySuggestions, setCountrySuggestions] = React.useState([])
@@ -103,7 +103,15 @@ export default function Header({country, setCountry}){
                         onChange={event=>handleCityChange(event)}
                         value={city.name}>
                     </input>
-                    <img src='./icons/search_icon.png' className="search--icon" alt="search-icon"></img>
+                    <button
+                        className="search--button"
+                        onClick={() => handleSearch(city.latitude, city.longitude)}>
+                        <img 
+                            src='./icons/search_icon.png' 
+                            className="search--icon" 
+                            alt="search-icon">
+                        </img>
+                    </button>  
                 </div>
                 <ul className="city--dropdown">{citySuggestions}</ul>
             </div>

@@ -35,7 +35,12 @@
 
 .search--icon{
     height: 25px;
-    margin: 0 10px;
+    padding: 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .search--space::placeholder,.country--space::placeholder{
@@ -101,4 +106,16 @@
     font-size: 16px;
     border-left: 1px solid white;
     padding: 0 2px;
+}
+
+.search--button{
+    position: relative;
+    height: 35px;
+    width: 50px;
+    background: none;
+    border: none;
+}
+
+.search--button img:hover{
+    background-color: rgb(105, 105, 105);
 }
