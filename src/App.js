@@ -5,7 +5,7 @@ import WeatherBody from "./component/Weatherbody/WeatherBody";
 
 export default function App(){
     const apiKey = '233be77dacbf073ca4e9197db09da8c2'
-    const [country,setCountry] = React.useState({name:'',iso:''})
+    const [country,setCountry] = React.useState({name:'',isoCode:''})
     const [currentWeather, setCurrentWeather] = React.useState({})
 
     function handleSearch(lat, lon){

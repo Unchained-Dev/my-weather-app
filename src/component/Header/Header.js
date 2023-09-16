@@ -9,14 +9,14 @@ export default function Header({country, setCountry, handleSearch}){
     const [citySuggestions, setCitySuggestions] = React.useState([])
 
     let cities;
-    cities = country.iso? City.getCitiesOfCountry(country.iso) : []
+    cities = country.isoCode? City.getCitiesOfCountry(country.isoCode) : []
 
     function handleChange(event){
-        setCountry({name: event.target.value, iso: ''})
+        setCountry({name: event.target.value, isoCode: ''})
     }
 
     function handleClick(event){
-        setCountry({name: event.target.textContent, iso: event.target.id})
+        setCountry({name: event.target.textContent, isoCode: event.target.id})
     }
 
     function handleCityChange(event){
@@ -54,7 +54,15 @@ export default function Header({country, setCountry, handleSearch}){
                         id={element.isoCode}
                         >{element.name}</li>)
                 )
-            }else{setCountry(country)};
+            }else{
+                console.log('country set')
+                countries.forEach(element => {
+                    let test = element.name.toLowerCase()
+                    if (country.name.toLowerCase() === test){
+                        setCountry(element)
+                    }
+                })
+            };
         })
     }, [country])
 
@@ -72,13 +80,13 @@ export default function Header({country, setCountry, handleSearch}){
                 }).slice(0,10)
                 .map(element=>{
                     let tempName = element.name
-                    let stateName = State.getStateByCodeAndCountry(element.stateCode, country.iso).name
+                    let stateName = State.getStateByCodeAndCountry(element.stateCode, country.isoCode).name
                     let concatenated = `${tempName}, ${stateName}`
 
                     return(
                         <li
                             onClick={event=>handleCityClick(event)}
-                            key={element.name}
+                            key={`${element.latitude} ${element.longitude}`}
                             id={element.latitude}
                             className={element.longitude}
                             >{concatenated}</li>
