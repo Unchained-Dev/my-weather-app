@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Details(){
+export default function Details({currentWeather}){
     return(
         <div className="row">
             <div className="today--details">
@@ -22,7 +22,8 @@ export default function Details(){
                             </div>
                             <div className="today--row">
                                 <span className="label">Wind</span>
-                                <span className="value">32 km/h</span>
+                                <span className="value">
+                                    {currentWeather? Math.round((currentWeather.wind.speed) * 3.6 * 10)/10 : '--'} km/h</span>
                             </div>
                             <div className="today--row">
                                 <span className="label">Probability of precipitation</span>

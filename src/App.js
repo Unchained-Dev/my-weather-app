@@ -6,7 +6,7 @@ import WeatherBody from "./component/Weatherbody/WeatherBody";
 export default function App(){
     const apiKey = '233be77dacbf073ca4e9197db09da8c2'
     const [country,setCountry] = React.useState({name:'',isoCode:''})
-    const [currentWeather, setCurrentWeather] = React.useState({})
+    const [currentWeather, setCurrentWeather] = React.useState('')
 
     function handleSearch(lat, lon){
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
@@ -21,8 +21,8 @@ export default function App(){
           })
         .then((data) => {
             // Handle the data received from the API
-            console.log('Data from API:', data);
             setCurrentWeather(data)
+            console.log(data)
           })
         .catch((error) => {
             // Handle any errors that occurred during the fetch
@@ -37,7 +37,9 @@ export default function App(){
                 handleSearch={handleSearch}
             />
             <Navbar />
-            <WeatherBody />
+            <WeatherBody 
+                currentWeather={currentWeather}
+            />
         </div>
     )
 }

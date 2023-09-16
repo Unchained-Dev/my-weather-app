@@ -3,14 +3,15 @@ import Current from "./current";
 import Details from "./details";
 import './weatherbody.css'
 
-export default function WeatherBody(){
-
-    
-
+export default function WeatherBody({currentWeather}){
     return(
         <div className="weather--body--container">
-            <Current />
-            <Details />
+            <Current 
+                currentWeather={currentWeather}
+            />
+            <Details 
+                currentWeather={currentWeather}
+            />
         </div>
     )
 }
