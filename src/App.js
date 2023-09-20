@@ -8,6 +8,7 @@ export default function App(){
     const [country,setCountry] = React.useState({name:'',isoCode:''})
     const [currentWeather, setCurrentWeather] = React.useState('')
 
+    console.log(currentWeather)
     function handleSearch(lat, lon){
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
         .then((response) => {
@@ -37,9 +38,10 @@ export default function App(){
                 handleSearch={handleSearch}
             />
             <Navbar />
+            {currentWeather && 
             <WeatherBody 
                 currentWeather={currentWeather}
-            />
+            />}
         </div>
     )
 }

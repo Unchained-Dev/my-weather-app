@@ -13,7 +13,7 @@ export default function Current({currentWeather}){
                 </div>
         )
     })
-    let imgPath = currentWeather? `./icons/${currentWeather.weather[0].icon}.png`: ''
+    let imgPath = `./icons/${currentWeather.weather[0].icon}.png`
     return(
         <div className="row">
             <div className="current--container">
@@ -27,9 +27,7 @@ export default function Current({currentWeather}){
                     </div> 
                 </div>
                 <div className="current--right">
-                    {currentWeather? 
-                        (<img src={imgPath} alt="weather icon" />) : '--'
-                    }
+                        <img src={imgPath} alt="weather icon" />
                 </div>
             </div>
             <div className="daily--container">
