@@ -20,7 +20,7 @@ export default function Current({currentWeather}){
                 <div className="current--left">
                     <div className="current--location">
                         <h2>{currentWeather.name? currentWeather.name : '--'}</h2>
-                        <span>{currentWeather.weather? currentWeather.weather[0].description : '--'}</span>
+                        <span>{currentWeather.weather? currentWeather.weather[0].main : '--'}</span>
                     </div>
                     <div className="current--temp">
                         {currentWeather.main? Math.round(currentWeather.main.temp) : '--'}°C

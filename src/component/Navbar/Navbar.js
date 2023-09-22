@@ -1,11 +1,17 @@
 import React from "react";
 import './nav.css'
 
-export default function Navbar(){
-    let options = ['Today','Hourly','Daily','Historical Maps','3 Days']
+export default function Navbar({buttonDisabled}){
+    let options = ['Today','3-Hourly','Daily','Historical Maps','3 Days']
     // ,'Today1','Hourly1','Daily1','Historical Maps1','3 Days1','Today2','Hourly2','Daily2','Historical Maps2','3 Days2'
     let buttons = options.map(element=>{
-        return(<button key={options.indexOf(element)} className="nav--buttons">{element}</button>)
+        return(
+            <button 
+                key={options.indexOf(element)} 
+                disabled = {buttonDisabled}
+                className="nav--buttons">
+                    {element}
+            </button>)
     })
 
     const scrollableDivRef = React.useRef(null);
