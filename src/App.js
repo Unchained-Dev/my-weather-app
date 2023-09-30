@@ -1,7 +1,10 @@
 import React from "react";
 import Header from "./component/Header/Header";
 import Navbar from './component/Navbar/Navbar'
-import WeatherBody from "./component/Weatherbody/WeatherBody";
+import Today from "./component/pages/Today/Today";
+import Daily from "./component/pages/Daily/Daily";
+import { Route, Routes } from "react-router";
+
 
 export default function App(){
     const link = 'https://api.openweathermap.org/data/2.5/'
@@ -64,10 +67,10 @@ export default function App(){
             <Navbar 
               buttonDisabled={currentWeather? false : true}
             />
-            {currentWeather && 
-            <WeatherBody 
-                currentWeather={currentWeather}
-            />}
+            <Routes>
+              <Route path="/today" element={currentWeather && <Today currentWeather={currentWeather}/>} />
+              <Route path="/daily" element={hourly && <Daily hourly={hourly}/>} />
+            </Routes>
         </div>
     )
 }

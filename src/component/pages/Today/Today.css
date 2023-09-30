@@ -52,6 +52,10 @@
     padding: 0 20px;
 }
 
+.daily--forecast:last-child{
+    border: none;
+}
+
 .row{
     display: flex;
     margin: 20px 0 0 20px;
@@ -125,4 +129,35 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgb(49, 49, 49);
+}
+
+.more--button{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 5px 15px 5px 0;
+    transition: all 0.4s;
+}
+
+.daily--arrow{
+    height: 20px;
+    margin-left: 5px;
+    transition: all 0.4s;
+}
+
+.more--link{
+    font-size: 20px;
+    transition: all 0.4s;
+}
+
+.more--link:hover{
+    color: orange;
+}
+
+.more--button:hover{
+    margin-right: 7px
+}
+
+.more--button:hover > .daily--arrow{
+    margin-left: 13px;
 }

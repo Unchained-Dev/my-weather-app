@@ -1,7 +1,7 @@
 import React from "react";
 import Current from "./current";
 import Details from "./details";
-import './weatherbody.css'
+import './Today.css'
 
 export default function WeatherBody({currentWeather}){
     return(

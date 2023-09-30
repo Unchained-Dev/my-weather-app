@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Current({currentWeather}){
     let daily = ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday']
@@ -34,6 +35,10 @@ export default function Current({currentWeather}){
                 <h3>Daily Forecast</h3>
                 <div className="daily">
                     {dailyRend}
+                </div>
+                <div className="more--button">
+                    <Link className="more--link" to="/daily"><i>Daily</i></Link>
+                    <img className="daily--arrow" src="./icons/right_arrow.png"></img>
                 </div>
             </div>
         </div>  
