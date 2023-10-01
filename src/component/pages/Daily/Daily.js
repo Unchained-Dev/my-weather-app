@@ -1,9 +1,11 @@
-import React from "react";
-import "./daily.css"
+import React, { useContext } from "react";
 import Day from "./days";
+import { UserContext } from "../../../myContext";
+import "./daily.css"
 
-export default function Daily({hourly, days}){
-
+export default function Daily(){
+    const {days, hourly} = useContext(UserContext)
+    
     let daysRender= days.map(element=>{
         return(
             <li className="daily--forecast">

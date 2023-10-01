@@ -1,8 +1,10 @@
-import React from "react";
-import { useState, useRef } from "react";
+import React, {useContext} from "react";
+import { UserContext } from "../../../myContext";
 import { Link } from "react-router-dom";
 
-export default function Current({currentWeather, days}){
+export default function Current(){
+    const {currentWeather, days} = useContext(UserContext)
+
     let daysRender = days.map(element=>{
         return(
                 <div className="daily--forecast" key={element}>

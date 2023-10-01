@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Country, State,City} from 'country-state-city'
+import { UserContext } from "../../myContext";
 import './header.css'
 
-export default function Header({country, setCountry, handleSearch}){
+export default function Header(){
     const countries = Country.getAllCountries()
     const [city, setCity] = React.useState({name: '', stateCode: '', longitude: '', latitude: ''})
     const [countrySuggestions, setCountrySuggestions] = React.useState([])
     const [citySuggestions, setCitySuggestions] = React.useState([])
+    const {country, updateCountry, handleSearch} = useContext(UserContext)
 
     let cities;
     cities = country.isoCode? City.getCitiesOfCountry(country.isoCode) : []
 
     function handleChange(event){
-        setCountry({name: event.target.value, isoCode: ''})
+        updateCountry({name: event.target.value, isoCode: ''})
+        countries.forEach(element => {
+            let test = element.name.toLowerCase()
+            if (event.target.value.toLowerCase() === test){
+                updateCountry(element)
+            }
+        })
     }
 
     function handleClick(event){
-        setCountry({name: event.target.textContent, isoCode: event.target.id})
+        updateCountry({name: event.target.textContent, isoCode: event.target.id})
     }
 
     function handleCityChange(event){
@@ -54,15 +62,7 @@ export default function Header({country, setCountry, handleSearch}){
                         id={element.isoCode}
                         >{element.name}</li>)
                 )
-            }else{
-                console.log('country set')
-                countries.forEach(element => {
-                    let test = element.name.toLowerCase()
-                    if (country.name.toLowerCase() === test){
-                        setCountry(element)
-                    }
-                })
-            };
+            }
         })
     }, [country])
 

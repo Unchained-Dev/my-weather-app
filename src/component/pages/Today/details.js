@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useContext} from "react";
+import { UserContext } from "../../../myContext";
 
-export default function Details({currentWeather}){
+export default function Details(){
+    const {currentWeather} = useContext(UserContext)
     let imgPath = currentWeather? `./icons/${currentWeather.weather[0].icon}.png`: ''
 
     return(

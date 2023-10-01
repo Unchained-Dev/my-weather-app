@@ -1,18 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import Current from "./current";
 import Details from "./details";
+import { UserContext } from "../../../myContext";
 import './Today.css'
 
-export default function WeatherBody({currentWeather, days}){
+export default function WeatherBody({days}){
+    const {currentWeather, hourly} = useContext(UserContext)
+
     return(
-        <div className="weather--body--container">
-            <Current 
-                currentWeather={currentWeather}
-                days={days}
-            />
-            <Details 
-                currentWeather={currentWeather}
-            />
-        </div>
+        currentWeather &&
+        (<div className="weather--body--container">
+            <Current />
+            <Details />
+        </div>)
     )
 }
