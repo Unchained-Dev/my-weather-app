@@ -1,12 +1,10 @@
 import React from "react";
-import { Link, Routes, Route } from "react-router-dom";
 import "./daily.css"
 import Day from "./days";
 
-export default function Daily({hourly}){
-    let daily = ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday']
+export default function Daily({hourly, days}){
 
-    let dailyRend = daily.map(element=>{
+    let daysRender= days.map(element=>{
         return(
             <li className="daily--forecast">
                 <button className="daily--nav">
@@ -22,7 +20,7 @@ export default function Daily({hourly}){
     return(
         <section className="daily--section">
             <ul className="daily--nav--container">
-                {dailyRend}
+                {daysRender}
             </ul>
         </section>     
     )

@@ -1,10 +1,9 @@
 import React from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
-export default function Current({currentWeather}){
-    let daily = ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday']
-
-    let dailyRend = daily.map(element=>{
+export default function Current({currentWeather, days}){
+    let daysRender = days.map(element=>{
         return(
                 <div className="daily--forecast" key={element}>
                     <span className="daily--date">{element}</span>
@@ -34,7 +33,7 @@ export default function Current({currentWeather}){
             <div className="daily--container">
                 <h3>Daily Forecast</h3>
                 <div className="daily">
-                    {dailyRend}
+                    {daysRender}
                 </div>
                 <div className="more--button">
                     <Link className="more--link" to="/daily"><i>Daily</i></Link>

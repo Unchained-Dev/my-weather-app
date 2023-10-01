@@ -12,6 +12,11 @@ export default function App(){
     const [country,setCountry] = React.useState({name:'',isoCode:''})
     const [currentWeather, setCurrentWeather] = React.useState('')
     const [hourly, setHourly] = React.useState('')
+    
+    let daily = ['Sunday', 'Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday']
+    let today = new Date()
+    let day = today.getDay()
+    let days = [...daily.slice(0,day), ...daily.slice(day)].slice(0,5)
 
     function handleSearch(lat, lon){
         // fetch the current weather data
@@ -68,8 +73,8 @@ export default function App(){
               buttonDisabled={currentWeather? false : true}
             />
             <Routes>
-              <Route path="/today" element={currentWeather && <Today currentWeather={currentWeather}/>} />
-              <Route path="/daily" element={hourly && <Daily hourly={hourly}/>} />
+              <Route path="/today" element={currentWeather && <Today currentWeather={currentWeather} days={days}/>} />
+              <Route path="/daily" element={hourly && <Daily hourly={hourly} days={days}/>} />
             </Routes>
         </div>
     )
