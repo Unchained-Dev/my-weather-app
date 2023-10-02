@@ -4,23 +4,138 @@
     background-color: rgb(22, 22, 22);
     padding: 20px;
     border-radius: 8px;
+    margin: 16px 0 0 0;
 }
 
 .daily--section{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .daily--nav{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 40px;
     background: none;
     color: white;
     border: none;
 }
 
-.daily--nav--container > .daily--forecast:hover{
+.daily--forecast{
+    padding: 0;
+}
+
+.daily--nav--container > .daily--forecast > .inActive:hover{
     background-color: rgba(224, 160, 40, 0.432);
+}
+
+.currentBtn{
+    background-color: rgba(224, 160, 40, 0.658);
+}
+
+.daily--min{
+    font-size: 14px;
+}
+
+.daily--minMax{
+    font-size: 18px;
+}
+
+.daily--date{
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.accordion--container{
+    padding: 0 15px 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion--container--right, .accordion--container--left{
+    width: 47%;
+    margin: 0 8px;
+}
+
+.accordion--button--container{
+    width: 100%;
+}
+
+.accordion--panel{
+    width: 100%;
+}
+
+.description--icon{
+    height: 50px;
+    margin-right: 15px;
+}
+
+.accordion--button--header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header--temp{
+    font-size: 20px;
+}
+
+.header--left{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.time--frame{
+    font-size: 20px;
+}
+
+.description--container{
+    width: 100%;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.pop--value{
+    font-size: 14px;
+}
+
+.drop--icon{
+    height: 22px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.pop--container{
+    display: flex;
+    align-items: center;
+}
+
+.details--column{
+    display: flex;
+    width: 47%;
+    justify-content: space-between;
+}
+
+.details--row{
+    width: 100%;
+    border-bottom: 1px solid grey;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.temp--min{
+    font-size: 14px;
+}
+
+.accordion__item{
+    width: 480px;
+    background-color: rgb(22, 22, 22);
+    margin: 20px 10px;
+    padding: 15px 20px;
+    border-radius: 5px;
 }

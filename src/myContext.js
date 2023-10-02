@@ -20,7 +20,9 @@ export default function UserContextProvider({ children }){
     let daily = ['Sunday', 'Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday']
     let today = new Date()
     let day = today.getDay()
-    let days = [...daily.slice(0,day), ...daily.slice(day)].slice(0,5)
+    let month = today.getMonth()
+    let days = [...daily.slice(day), ...daily.slice(0, day )].slice(1,6)
+    console.log(day)
 
     function handleSearch(lat, lon){
         // fetch the current weather data
@@ -48,15 +50,16 @@ export default function UserContextProvider({ children }){
           })
         .then((data) => {
             setHourly(data)
-            console.log(data)
           })
         .catch((error) => {
             console.error('Fetch error:', error);
           })
     }
 
+
+
   return (
-    <UserContext.Provider value={{ country, updateCountry, handleSearch, currentWeather, hourly, days}}>
+    <UserContext.Provider value={{ country, updateCountry, handleSearch, currentWeather, hourly, days, today}}>
       {children}
     </UserContext.Provider>
   );
