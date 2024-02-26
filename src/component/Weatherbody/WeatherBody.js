@@ -1,6 +1,6 @@
 import React from "react";
-import Current from "./current";
-import Details from "./details";
+import Current from "./Current";
+import Details from "./Details";
 import styles from './weatherbody.css'
 
 export default function WeatherBody(){
