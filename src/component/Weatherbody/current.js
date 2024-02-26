@@ -5,11 +5,11 @@ export default function Current(){
 
     let dailyRend = daily.map(element=>{
         return(
-                <div className="daily--forecast">
+                <div className="daily--forecast" key={element}>
                     <span className="daily--date">{element}</span>
                     <span className="daily--maximum">24°C</span>
                     <span className="daily--minimum">24°C</span>
-                    <img src="./icons/01d.png" alt="weather image"></img>
+                    <img src="./icons/01d.png" alt="weather"></img>
                 </div>
         )
     })
@@ -25,7 +25,7 @@ export default function Current(){
                     <div className="current--temp">18°C</div> 
                 </div>
                 <div className="current--right">
-                    <img src="./icons/01d.png" alt="weather image"></img>
+                    <img src="./icons/01d.png" alt="weather"></img>
                 </div>
             </div>
             <div className="daily--container">

@@ -7,9 +7,7 @@ export default function Header({country, setCountry}){
     const [city, setCity] = React.useState({name: '', stateCode: '', longitude: '', latitude: ''})
     const [countrySuggestions, setCountrySuggestions] = React.useState([])
     const [citySuggestions, setCitySuggestions] = React.useState([])
-
-    let cities;
-    cities = country.iso? City.getCitiesOfCountry(country.iso) : []
+    const [cities, setCities] = React.useState([])
 
     const handleChange = (event) => {
         setCountry({name: event.target.value, iso: ''})
@@ -37,6 +35,10 @@ export default function Header({country, setCountry}){
     }
 
     React.useEffect(()=>{
+        setCities(()=>City.getCitiesOfCountry(country.iso))
+    }, [country])
+
+    React.useEffect(()=>{
         let startWith = country.name.toLowerCase()
         setCountrySuggestions(()=>{
             return(
@@ -59,6 +61,7 @@ export default function Header({country, setCountry}){
         let startWith = city.name.toLowerCase()
         setCitySuggestions(()=>{
             return(
+                city.latitude === '' &&
                 cities.filter(element=>{
                     let lower = element.name.toLowerCase()
                     return(
@@ -75,7 +78,7 @@ export default function Header({country, setCountry}){
                     return(
                         <li
                             onClick={event=>handleCityClick(event)}
-                            key={element.name}
+                            key={element.latitude}
                             id={element.latitude}
                             className={element.longitude}
                             >{concatenated}
@@ -84,7 +87,7 @@ export default function Header({country, setCountry}){
                 })
             )
         })
-    },[city, country, cities])
+    }, [city, country, cities])
 
     return(
         <header className="main--header">
