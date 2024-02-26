@@ -1,21 +1,26 @@
-import React, { useCallback } from "react";
+import React, { useContext, useCallback } from "react";
 import {Country, State,City} from 'country-state-city'
+import {WeatherContext} from '../../Context'
 import './header.css'
 
-export default function Header({country, setCountry}){
+export default function Header(){
     const countries = Country.getAllCountries()
     const [city, setCity] = React.useState({name: '', stateCode: '', longitude: '', latitude: ''})
     const [countrySuggestions, setCountrySuggestions] = React.useState([])
     const [citySuggestions, setCitySuggestions] = React.useState([])
     const [cities, setCities] = React.useState([])
+    const [citySearchActive, setCitySearchActive] = React.useState(false)
+    const [countrySearchActive, setCountrySearchActive] = React.useState(false)
+    const {country, changeCountry} = useContext(WeatherContext)
 
     const handleChange = (event) => {
-        setCountry({name: event.target.value, iso: ''})
+        changeCountry({name: event.target.value, iso: ''})
     }
 
     const handleClick = useCallback((event) => {
-        setCountry({name: event.target.textContent, iso: event.target.id})
-    }, [setCountry])
+        console.log("clicked")
+        changeCountry({name: event.target.textContent, iso: event.target.id})
+    }, [changeCountry])
 
     function handleCityChange(event){
         setCity({
@@ -40,6 +45,7 @@ export default function Header({country, setCountry}){
 
     React.useEffect(()=>{
         let startWith = country.name.toLowerCase()
+        console.log(country.name)
         setCountrySuggestions(()=>{
             return(
                 countries.filter(element=>{
@@ -98,15 +104,25 @@ export default function Header({country, setCountry}){
             <div className="search--suggestion--container">
                 <div className="search--space--container">
                     <input 
+                    
                         className='search--space' 
                         type="text" 
                         placeholder="search"
                         onChange={event=>handleCityChange(event)}
-                        value={city.name}>
+                        value={city.name}
+                        onFocus={()=>setCitySearchActive(true)}
+                        onBlur={()=>{
+                                    const timeoutId = setTimeout(() => {
+                                        setCitySearchActive(false)
+                                    }, 2000);
+                                    clearTimeout(timeoutId);
+                                }
+                            }
+                    >
                     </input>
                     <img src='./icons/search_icon.png' className="search--icon" alt="search-icon"></img>
                 </div>
-                <ul className="city--dropdown">{citySuggestions}</ul>
+                {citySearchActive && <ul className="city--dropdown">{citySuggestions}</ul>}
             </div>
             <div className="unit">
                 <div className="country--space--container">
@@ -115,9 +131,18 @@ export default function Header({country, setCountry}){
                         type="text"
                         placeholder="Country"
                         onChange={event=>handleChange(event)}
-                        value={country.name}>
+                        value={country.name}
+                        onFocus={()=>setCountrySearchActive(true)}
+                        onBlur={()=>{
+                                const timeoutId = setTimeout(() => {
+                                    setCountrySearchActive(false)
+                                }, 2000);
+                                clearTimeout(timeoutId);
+                                }
+                            }
+                    >
                     </input>
-                    <ul className="country--dropdown">{countrySuggestions}</ul>
+                    {countrySearchActive && <ul className="country--dropdown">{countrySuggestions}</ul>}
                 </div>
                 <select className="temp--unit">
                     <option>&deg;C</option>
