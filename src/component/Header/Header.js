@@ -20,9 +20,17 @@ export default function Header(){
     }
 
     const handleClick = useCallback((event) => {
-        console.log("clicked")
+
         changeCountry({name: event.target.textContent, iso: event.target.id})
     }, [changeCountry])
+
+    const handleCityClick = useCallback((event) => {
+        changeCity({
+            name: event.target.textContent,
+            longitude: event.target.className,
+            latitude: event.target.id
+        })
+    }, [changeCity])
 
     const handleCityChange = (event) => {
         changeCity({
@@ -30,14 +38,6 @@ export default function Header(){
             stateCode: '',
             longitude: '',
             latitude: ''
-        })
-    }
-
-    const handleCityClick = (event) =>{
-        changeCity({
-            name: event.target.textContent,
-            longitude: event.target.className,
-            latitude: event.target.id
         })
     }
 
@@ -95,8 +95,8 @@ export default function Header(){
                 })
             )
         })
-    }, [city, country, cities])
-
+    }, [city, country, cities, handleCityClick])
+    console.log(countrySearchActive)
     return(
         <header className="main--header">
             <div className="icon--container">
@@ -116,8 +116,8 @@ export default function Header(){
                         onBlur={()=>{
                                     const timeoutId = setTimeout(() => {
                                         setCitySearchActive(false)
-                                    }, 2000);
-                                    clearTimeout(timeoutId);
+                                    }, 200);
+                                    return () => clearTimeout(timeoutId);
                                 }
                             }
                     >
@@ -138,8 +138,8 @@ export default function Header(){
                         onBlur={()=>{
                                 const timeoutId = setTimeout(() => {
                                     setCountrySearchActive(false)
-                                }, 2000);
-                                clearTimeout(timeoutId);
+                                }, 200);
+                                return () => clearTimeout(timeoutId);
                                 }
                             }
                     >

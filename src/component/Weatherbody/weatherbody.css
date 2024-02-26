@@ -52,6 +52,10 @@
     padding: 0 20px;
 }
 
+.daily > :last-child{
+    border: none;
+}
+
 .row{
     display: flex;
     margin: 20px 0 0 20px;
