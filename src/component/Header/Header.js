@@ -5,13 +5,15 @@ import './header.css'
 
 export default function Header(){
     const countries = Country.getAllCountries()
-    const [city, setCity] = React.useState({name: '', stateCode: '', longitude: '', latitude: ''})
+    const [cities, setCities] = React.useState([])
+
     const [countrySuggestions, setCountrySuggestions] = React.useState([])
     const [citySuggestions, setCitySuggestions] = React.useState([])
-    const [cities, setCities] = React.useState([])
     const [citySearchActive, setCitySearchActive] = React.useState(false)
     const [countrySearchActive, setCountrySearchActive] = React.useState(false)
-    const {country, changeCountry} = useContext(WeatherContext)
+
+
+    const {country, changeCountry, city, changeCity} = useContext(WeatherContext)
 
     const handleChange = (event) => {
         changeCountry({name: event.target.value, iso: ''})
@@ -22,8 +24,8 @@ export default function Header(){
         changeCountry({name: event.target.textContent, iso: event.target.id})
     }, [changeCountry])
 
-    function handleCityChange(event){
-        setCity({
+    const handleCityChange = (event) => {
+        changeCity({
             name: event.target.value,
             stateCode: '',
             longitude: '',
@@ -31,8 +33,8 @@ export default function Header(){
         })
     }
 
-    function handleCityClick(event){
-        setCity({
+    const handleCityClick = (event) =>{
+        changeCity({
             name: event.target.textContent,
             longitude: event.target.className,
             latitude: event.target.id
