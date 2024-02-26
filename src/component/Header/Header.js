@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {Country, State,City} from 'country-state-city'
-import style from './header.css'
+import './header.css'
 
 export default function Header({country, setCountry}){
     const countries = Country.getAllCountries()
@@ -11,13 +11,13 @@ export default function Header({country, setCountry}){
     let cities;
     cities = country.iso? City.getCitiesOfCountry(country.iso) : []
 
-    function handleChange(event){
+    const handleChange = (event) => {
         setCountry({name: event.target.value, iso: ''})
     }
 
-    function handleClick(event){
+    const handleClick = useCallback((event) => {
         setCountry({name: event.target.textContent, iso: event.target.id})
-    }
+    }, [setCountry])
 
     function handleCityChange(event){
         setCity({
@@ -44,7 +44,7 @@ export default function Header({country, setCountry}){
                     let test = element.name.toLowerCase()
                     return(
                         country.name && test.startsWith(startWith) && 
-                        test != startWith)
+                        test !== startWith)
                 }).slice(0,10)
                 .map(element=><li 
                     onClick={event=>handleClick(event)} 
@@ -53,7 +53,7 @@ export default function Header({country, setCountry}){
                     >{element.name}</li>)
             )
         })
-    }, [country])
+    }, [country, countries, handleClick])
 
     React.useEffect(()=>{
         let startWith = city.name.toLowerCase()
@@ -78,12 +78,13 @@ export default function Header({country, setCountry}){
                             key={element.name}
                             id={element.latitude}
                             className={element.longitude}
-                            >{concatenated}</li>
+                            >{concatenated}
+                        </li>
                     )
                 })
             )
         })
-    },[city])
+    },[city, country, cities])
 
     return(
         <header className="main--header">
