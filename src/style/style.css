@@ -4,7 +4,21 @@ body{
     background-color: rgb(185, 185, 185);
 }
 
+body.dark{
+    background-color: rgb(185, 185, 185);
+}
 
+body.light{
+    background-color: white;
+}
+
+.dark {
+    background-color: black;
+}
+
+.light {
+    background-color: rgb(255, 179, 38);
+}
 
 
 

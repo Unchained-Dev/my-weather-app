@@ -1,16 +1,21 @@
-import React from "react";
-import styles from './nav.css'
+import React, { useContext } from "react";
+import './nav.css'
+import {SettingsContext} from '../../contexts/settings_context'
+
 
 export default function Navbar(){
-    let options = ['Today','Hourly','Daily','Historical Maps','3 Days']
-    // ,'Today1','Hourly1','Daily1','Historical Maps1','3 Days1','Today2','Hourly2','Daily2','Historical Maps2','3 Days2'
-    let buttons = options.map(element=>{
-        return(<button key={options.indexOf(element)} className="nav--buttons">{element}</button>)
-    })
-
     const scrollableDivRef = React.useRef(null);
     const [isDragging, setIsDragging] = React.useState(false);
     const [startPosition, setStartPosition] = React.useState(0);
+
+    const { theme } = useContext(SettingsContext)
+
+    let options = ['Today','Hourly','Daily','Historical Maps','3 Days']
+    // ,'Today1','Hourly1','Daily1','Historical Maps1','3 Days1','Today2','Hourly2','Daily2','Historical Maps2','3 Days2'
+    let buttons = options.map(element=>{
+        return(<button key={options.indexOf(element)} className={"nav--buttons " + theme}>{element}</button>)
+    })
+
 
     function handleMouseDown(event){
         setIsDragging(true);
@@ -31,7 +36,7 @@ export default function Navbar(){
 
     return(
         <div 
-            className="nav--buttons-container"
+            className={"nav--buttons-container " + theme}
             ref={scrollableDivRef}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}

@@ -1,5 +1,5 @@
 .main--header{
-    background-color: black;
+    
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -25,7 +25,6 @@
     letter-spacing: 1px;
     font-size: 16px;
     text-align: center;
-    height: 100%;
     background: none;
     height: 35px;
     border: none;
@@ -45,7 +44,6 @@
 .search--space--container{
     display: flex;
     align-items: center;
-    background-color: grey;
     margin: 0;
     padding: 0;
     height: fit-content;
@@ -53,10 +51,24 @@
     border-radius: 10px;
 }
 
+.search--space--container.light,
+.city--dropdown.light,
+.country--space--container.light{
+    background-color: rgb(248, 209, 137);
+}
+
+.search--space--container.dark,
+.country--dropdown.dark,
+.city--dropdown.dark, 
+.country--space--container.dark{
+    background-color: grey;
+}
+
 .country--dropdown, .city--dropdown{
     position: absolute;
-    background-color: grey; 
-    width: 100%;   
+    width: 95%;
+    left: 2.5%;
+    right: 2.5%;
     list-style: none;
     padding: 0;
     margin: 1px 0 0 0;
@@ -67,12 +79,17 @@
 .country--space--container{
     position: relative;
     text-align: center;
+    margin: auto;
+    height: 40px;
+    border-radius: 10px;
+    width: 220px
 }
 
 .country--space{
     width: 200px;
     border: none;
 }
+
 
 .city--dropdown{
     width: 300px;
@@ -88,17 +105,23 @@
 
 .unit{
     display: flex;
-    background-color: grey;
+    background: none;
     align-items: center;
-    border: 1px solid white;
 }
 
-.temp--unit{
-    height: 35px;
-    background-color: grey;
-    color: white;
+.settings--icon{
+    height: 30px;
+}
+
+.settings--button{
+    background: none;
+    padding: 5px;
+    margin-left: 15px;
+    border: none;
     outline: none;
-    font-size: 16px;
-    border-left: 1px solid white;
-    padding: 0 2px;
+    cursor: pointer;
+}
+
+.search--suggestion--container {
+    position: relative;
 }

@@ -1,6 +1,7 @@
 import React, { useContext, useCallback } from "react";
 import {Country, State,City} from 'country-state-city'
-import {WeatherContext} from '../../Context'
+import {WeatherContext} from '../../contexts/weather_context'
+import {SettingsContext} from '../../contexts/settings_context'
 import './header.css'
 
 export default function Header(){
@@ -14,6 +15,7 @@ export default function Header(){
 
 
     const {country, changeCountry, city, changeCity} = useContext(WeatherContext)
+    const {theme, toggleTheme} = useContext(SettingsContext)
 
     const handleChange = (event) => {
         changeCountry({name: event.target.value, iso: ''})
@@ -47,7 +49,6 @@ export default function Header(){
 
     React.useEffect(()=>{
         let startWith = country.name.toLowerCase()
-        console.log(country.name)
         setCountrySuggestions(()=>{
             return(
                 countries.filter(element=>{
@@ -96,15 +97,16 @@ export default function Header(){
             )
         })
     }, [city, country, cities, handleCityClick])
-    console.log(countrySearchActive)
+
     return(
-        <header className="main--header">
+        <header className={"main--header " + theme}>
             <div className="icon--container">
                 <img src='./icons/weather_icon.png' className="weather--icon" alt="logo"></img>
                 <h2>My Weather</h2>
+                <button className="theme--button" onClick={toggleTheme}/>
             </div>
             <div className="search--suggestion--container">
-                <div className="search--space--container">
+                <div className={"search--space--container " + theme}>
                     <input 
                     
                         className='search--space' 
@@ -124,10 +126,10 @@ export default function Header(){
                     </input>
                     <img src='./icons/search_icon.png' className="search--icon" alt="search-icon"></img>
                 </div>
-                {citySearchActive && <ul className="city--dropdown">{citySuggestions}</ul>}
+                {citySearchActive && <ul className={"city--dropdown " + theme}>{citySuggestions}</ul>}
             </div>
-            <div className="unit">
-                <div className="country--space--container">
+            <div className={"unit " + theme}>
+                <div className={"country--space--container " + theme}>
                     <input 
                         className="country--space" 
                         type="text"
@@ -144,12 +146,11 @@ export default function Header(){
                             }
                     >
                     </input>
-                    {countrySearchActive && <ul className="country--dropdown">{countrySuggestions}</ul>}
+                    {countrySearchActive && <ul className={"country--dropdown " + theme}>{countrySuggestions}</ul>}
                 </div>
-                <select className="temp--unit">
-                    <option>&deg;C</option>
-                    <option>&deg;F</option>
-                </select>  
+                <div className="settings--button">
+                    <img src='./icons/setting.png' className="settings--icon" alt="settings-icon"></img>
+                </div>
             </div>
         </header>
     )

@@ -1,17 +1,30 @@
 .nav--buttons{
     border: none;
-    background: none;
     color: white;
     font-size: 16px;
     padding: 15px 15px;
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
     min-width: 150px;
     transition: all 300ms;
 }
 
-.nav--buttons:hover{
-    background-color: grey;
+.nav--buttons.dark{
+    background: none;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+.nav--buttons.dark:hover{
+    background-color: grey; 
+}
+
+.nav--buttons.light{
+    background: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.nav--buttons.light:hover{
+    background-color: rgb(255, 179, 38);
 }
 
 .nav--buttons-container::-webkit-scrollbar{
@@ -22,7 +35,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: rgb(22, 22, 22);
     overflow-x: scroll;
     scrollbar-width: none;
+}
+
+.nav--buttons-container.dark {
+    background-color: rgb(22, 22, 22);
+}
+
+.nav--buttons-container.light {
+    background-color: rgb(248, 209, 137);
 }

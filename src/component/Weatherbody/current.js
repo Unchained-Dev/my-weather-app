@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import {SettingsContext} from '../../contexts/settings_context'
 
 export default function Current(){
+    const { theme } = useContext(SettingsContext)
     let daily = ['Monday', 'Tuesday','Wednesday', 'Thursday', 'Friday']
 
     let dailyRend = daily.map(element=>{
@@ -16,7 +18,7 @@ export default function Current(){
 
     return(
         <div className="row">
-            <div className="current--container">
+            <div className={"current--container " + theme}>
                 <div className="current--left">
                     <div className="current--location">
                         <h2>Argentina</h2>
@@ -28,7 +30,7 @@ export default function Current(){
                     <img src="./icons/01d.png" alt="weather"></img>
                 </div>
             </div>
-            <div className="daily--container">
+            <div className={"daily--container " + theme}>
                 <h3>Daily Forecast</h3>
                 <div className="daily">
                     {dailyRend}

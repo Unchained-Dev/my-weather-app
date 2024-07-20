@@ -2,16 +2,19 @@ import React from "react";
 import Header from "./component/Header/Header";
 import Navbar from './component/Navbar/Navbar'
 import WeatherBody from "./component/Weatherbody/WeatherBody";
-import {WeatherProvider} from './Context'
+import {WeatherProvider} from './contexts/weather_context'
+import { SettingsProvider } from "./contexts/settings_context";
 
 export default function App(){
     return(
         <WeatherProvider>
-            <div>
+            <SettingsProvider>
+            <section>
                 <Header />
                 <Navbar />
                 <WeatherBody />
-            </div>
+            </section>
+            </SettingsProvider>
         </WeatherProvider>
     )
 }

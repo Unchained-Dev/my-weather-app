@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import {SettingsContext} from '../../contexts/settings_context'
 
 export default function Details(){
+    const { theme } = useContext(SettingsContext)
+
     return(
         <div className="row">
-            <div className="today--details">
+            <div className={"today--details " + theme}>
                 <div className='today--header'>
                     <span>Today</span>
                     <span>Date</span>
                 </div>
                 <div className="today--body">
                     <div className="today--temp--details">
-                        <img src="./icons/01d.png" alt="weather image"></img>
+                        <img src="./icons/01d.png" alt="weather"></img>
                         <span className="today--temp">29°C</span>
                     </div>
                     <div className="today--forecast">Cloudy</div>
