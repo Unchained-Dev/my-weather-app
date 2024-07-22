@@ -37,6 +37,7 @@
     justify-content: center;
     overflow-x: scroll;
     scrollbar-width: none;
+    margin: 0;
 }
 
 .nav--buttons-container.dark {

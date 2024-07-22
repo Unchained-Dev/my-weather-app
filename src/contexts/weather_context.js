@@ -21,6 +21,10 @@ export const WeatherProvider = ({ children }) => {
         "hourly": ["weather_code", "temperature_2m"],
     })
 
+// open meteo organizes response variables by the position of the parameter in the array
+// this state helps keep track of their positions
+    const [ paramsMap, setParamsMap ] = useState(undefined)
+
     const [country, setCountry] = useState({name:'',iso:''});
     const [city, setCity] = useState({name: '', stateCode: '', longitude: '', latitude: ''});
 
@@ -46,8 +50,25 @@ export const WeatherProvider = ({ children }) => {
                 console.error('Error fetching weather data:', error);
             });
         }
+
+        setParamsMap(()=> {
+            let temp = {}
+
+            for (const key in params){
+                temp[key] = {}
+
+                for (let i = 0; params[key] && i < params[key].length; i++){
+                    temp[key][params[key][i]] = i
+                }
+            }
+            return (temp)
+        }
+        )
+        // console.log(weather.hourly().variables(0).valuesArray())
     }, [params])
 
+    // console.log(weather.current().variables(paramsMap.current.weather_code).value())
+    // console.log(weather && weather.current().variables(paramsMap.current.temperature_2m).value())
     return <WeatherContext.Provider 
         value={{
             country,
@@ -56,6 +77,7 @@ export const WeatherProvider = ({ children }) => {
             daily: weather && weather.daily(),
             hourly: weather && weather.hourly(),
             params,
+            paramsMap,
             changeCountry: (value) => setCountry(value),
             changeCity: (value) => setCity(value),
             changeParams: (value) => setParams(value),

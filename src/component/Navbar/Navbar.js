@@ -35,7 +35,7 @@ export default function Navbar(){
     }
 
     return(
-        <div 
+        <ul
             className={"nav--buttons-container " + theme}
             ref={scrollableDivRef}
             onMouseDown={handleMouseDown}
@@ -43,6 +43,6 @@ export default function Navbar(){
             onMouseMove={handleMouseMove}
         >
             {buttons}
-        </div>
+        </ul>
     )
 }
