@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import './nav.css'
 import {SettingsContext} from '../../contexts/settings_context'
+import { NavLink } from "react-router-dom";
 
 
 export default function Navbar(){
@@ -13,7 +14,19 @@ export default function Navbar(){
     let options = ['Today','Hourly','Daily','Historical Maps','3 Days']
     // ,'Today1','Hourly1','Daily1','Historical Maps1','3 Days1','Today2','Hourly2','Daily2','Historical Maps2','3 Days2'
     let buttons = options.map(element=>{
-        return(<button key={options.indexOf(element)} className={"nav--buttons " + theme}>{element}</button>)
+        const to = element === 'Today' ? '/' : element.toLowerCase().replace(/ /g, '-');
+        return(
+            <NavLink 
+                to={to}
+                key={element}
+                exact
+                activeClassName="active"
+            > 
+                <button className={"nav--buttons " + theme}>
+                    {element}
+                </button>
+            </NavLink>
+        )
     })
 
 

@@ -13,7 +13,7 @@
     border-right: 1px solid grey;
 }
 
-.nav--buttons.dark:hover{
+.nav--buttons.dark:hover, .active .nav--buttons.dark{
     background-color: grey; 
 }
 
@@ -23,7 +23,7 @@
     border-right: 1px solid white;
 }
 
-.nav--buttons.light:hover{
+.nav--buttons.light:hover, .active .nav--buttons.light{
     background-color: rgb(255, 179, 38);
 }
 
