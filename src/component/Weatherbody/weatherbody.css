@@ -141,7 +141,16 @@
 
 .today--row{
     padding:15px 0;
-    width: 400px;
+    width: 320px;
     display: flex;
     justify-content: space-between;
+}
+
+.today--chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 400px;
+    width: 600px;
 }

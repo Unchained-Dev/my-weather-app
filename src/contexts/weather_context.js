@@ -6,6 +6,14 @@ export const WeatherContext = createContext(undefined);
 export const WeatherProvider = ({ children }) => {
     const [weather, setWeather] = useState(undefined);
     const url = "https://api.open-meteo.com/v1/forecast";
+
+
+    const getCurrentDateISO = () => {
+        const now = new Date();
+        return now.toISOString().split('T')[0];
+    };
+  
+// This state contains the parameters that will be used to fetch the weather data
     const [ params, setParams ] = React.useState({
         "latitude": undefined,
         "longitude": undefined,
@@ -19,6 +27,9 @@ export const WeatherProvider = ({ children }) => {
                     "precipitation_probability_max", "wind_speed_10m_max", "wind_gusts_10m_max", "weather_code"],
 
         "hourly": ["weather_code", "temperature_2m"],
+        "timezone": "auto",
+        "start_hour": getCurrentDateISO() + "T00:00",
+        "end_hour": getCurrentDateISO() + "T23:59"
     })
 
 // open meteo organizes response variables by the position of the parameter in the array
@@ -28,6 +39,7 @@ export const WeatherProvider = ({ children }) => {
     const [country, setCountry] = useState({name:'',iso:''});
     const [city, setCity] = useState({name: '', stateCode: '', longitude: '', latitude: ''});
 
+    console.log(params.startHour)
     useEffect(() => {
         if(city.latitude && city.longitude){
             setParams((prev) => {
@@ -67,6 +79,8 @@ export const WeatherProvider = ({ children }) => {
         // console.log(weather.hourly().variables(0).valuesArray())
     }, [params])
 
+    // console.log(weather && weather.timezone())
+    // console.log(weather && weather.timezoneAbbreviation())
     // console.log(weather.current().variables(paramsMap.current.weather_code).value())
     // console.log(weather && weather.current().variables(paramsMap.current.temperature_2m).value())
     return <WeatherContext.Provider 

@@ -1,8 +1,39 @@
 import React, { useContext } from "react";
 import {SettingsContext} from '../../contexts/settings_context'
+import {WeatherContext} from '../../contexts/weather_context'
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  );
 
 export default function Details(){
     const { theme } = useContext(SettingsContext)
+    const { hourly, paramsMap } = useContext(WeatherContext)
+
+    const labels = [];
+    for (let i = 0; i <= 24; i++) {
+        labels.push(`${i}:00`);
+    }
+
+
+    hourly && console.log(hourly.variables(paramsMap.hourly.temperature_2m).valuesArray())
 
     return(
         <div className="row">
@@ -56,6 +87,20 @@ export default function Details(){
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className={"today--chart " + theme}>
+                <Line data={{
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Temperature (°C)',
+                            data: hourly && hourly.variables(paramsMap.hourly.temperature_2m).valuesArray().map(element=>Math.round(element)),
+                            borderColor: '#FFFFFF',
+                            pointBackgroundColor: '#FF6384'
+                        },
+                    ],
+                }}
+                />
             </div>
         </div>
     )
