@@ -19,8 +19,7 @@ export default function Navbar(){
             <NavLink 
                 to={to}
                 key={element}
-                exact
-                activeClassName="active"
+                exact="true"
             > 
                 <button className={"nav--buttons " + theme}>
                     {element}

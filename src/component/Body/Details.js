@@ -32,9 +32,6 @@ export default function Details(){
         labels.push(`${i}:00`);
     }
 
-
-    hourly && console.log(hourly.variables(paramsMap.hourly.temperature_2m).valuesArray())
-
     return(
         <div className="row">
             <div className={"today--details " + theme}>

@@ -1,0 +1,15 @@
+.hourly--container {
+    display: flex;
+    width: 75%;
+    justify-content: space-between;
+    margin: 30px auto;
+}
+
+.column {
+    width: 47%;
+}
+.accordion__item{
+    background-color: black;
+    padding: 5px;
+    margin-bottom: 10px;
+}

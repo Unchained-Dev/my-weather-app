@@ -28,8 +28,7 @@ export const WeatherProvider = ({ children }) => {
 
         "hourly": ["weather_code", "temperature_2m"],
         "timezone": "auto",
-        "start_hour": getCurrentDateISO() + "T00:00",
-        "end_hour": getCurrentDateISO() + "T23:59"
+        "forecast_hours": 24
     })
 
 // open meteo organizes response variables by the position of the parameter in the array
@@ -39,7 +38,6 @@ export const WeatherProvider = ({ children }) => {
     const [country, setCountry] = useState({name:'',iso:''});
     const [city, setCity] = useState({name: '', stateCode: '', longitude: '', latitude: ''});
 
-    console.log(params.startHour)
     useEffect(() => {
         if(city.latitude && city.longitude){
             setParams((prev) => {
@@ -79,10 +77,6 @@ export const WeatherProvider = ({ children }) => {
         // console.log(weather.hourly().variables(0).valuesArray())
     }, [params])
 
-    // console.log(weather && weather.timezone())
-    // console.log(weather && weather.timezoneAbbreviation())
-    // console.log(weather.current().variables(paramsMap.current.weather_code).value())
-    // console.log(weather && weather.current().variables(paramsMap.current.temperature_2m).value())
     return <WeatherContext.Provider 
         value={{
             country,
@@ -90,6 +84,7 @@ export const WeatherProvider = ({ children }) => {
             current: weather && weather.current(),
             daily: weather && weather.daily(),
             hourly: weather && weather.hourly(),
+            utcOffsetSeconds: weather && weather.utcOffsetSeconds(),
             params,
             paramsMap,
             changeCountry: (value) => setCountry(value),

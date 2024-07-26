@@ -1,5 +1,6 @@
 import React from "react";
-import WeatherBody from "./component/Weatherbody/WeatherBody";
+import Today from "./pages/Today";
+import Hourly from "./pages/Hourly";
 import {
     Route,
     Routes
@@ -9,8 +10,9 @@ export default function NavRoute(){
 
     return(
         <Routes>
-            <Route path="/" element={<WeatherBody />} />
+            <Route path="/" element={<Today />} />
             <Route path="about" element={<div>About</div>} />
+            <Route path="hourly" element={<Hourly />} />
         </Routes>
     )
 }
