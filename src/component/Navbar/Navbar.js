@@ -16,7 +16,7 @@ export default function Navbar(){
     let buttons = options.map(element=>{
         const to = element === 'Today' ? '/' : element.toLowerCase().replace(/ /g, '-');
         return(
-            <NavLink 
+            <NavLink
                 to={to}
                 key={element}
                 exact="true"

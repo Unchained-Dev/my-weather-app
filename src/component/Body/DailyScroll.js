@@ -78,6 +78,7 @@ export default function DailyScroll() {
         )
     })
 
+    console.log(isDragging)
     return(
         <div className={"daily--container " + theme}>
             <h3>Daily Forecast</h3>
