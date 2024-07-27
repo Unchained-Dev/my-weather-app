@@ -9,7 +9,44 @@
     width: 47%;
 }
 .accordion__item{
-    background-color: black;
-    padding: 5px;
+    padding: 25px;
     margin-bottom: 10px;
+}
+
+.button--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button--header--time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button--header--time h1 {
+    margin: 0;
+}
+
+.button--header--temp h2 {
+    margin: 0;
+}
+
+.button--header--precip {
+    display: flex;
+    align-items: center;
+}
+
+.button--content--row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid white;
+}
+
+.button--content--column {
+    width: 45%;
+    margin: 0 10px;
 }

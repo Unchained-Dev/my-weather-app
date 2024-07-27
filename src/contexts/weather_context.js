@@ -8,10 +8,10 @@ export const WeatherProvider = ({ children }) => {
     const url = "https://api.open-meteo.com/v1/forecast";
 
 
-    const getCurrentDateISO = () => {
-        const now = new Date();
-        return now.toISOString().split('T')[0];
-    };
+    // const getCurrentDateISO = () => {
+    //     const now = new Date();
+    //     return now.toISOString().split('T')[0];
+    // };
   
 // This state contains the parameters that will be used to fetch the weather data
     const [ params, setParams ] = React.useState({
@@ -19,16 +19,19 @@ export const WeatherProvider = ({ children }) => {
         "longitude": undefined,
         "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature",
                     "precipitation", "rain", "showers", "snowfall", "cloud_cover", 
-                    "surface_pressure", "wind_speed_10m", "wind_direction_10m", "wind_gusts_10m", "weather_code"],
+                    "surface_pressure", "wind_speed_10m", "wind_direction_10m", "wind_gusts_10m", "weather_code", 
+                    "is_day", "uv_index", "precipitation_probability"],
 
         "daily": ["temperature_2m_max", "temperature_2m_min", "apparent_temperature_max",
                     "apparent_temperature_min", "sunrise", "uv_index_max", "precipitation_sum",
-                    "rain_sum", "showers_sum", "snowfall_sum", "precipitation_hours",
+                    "rain_sum", "showers_sum", "snowfall_sum", "precipitation_hours", "uv_index_max",
                     "precipitation_probability_max", "wind_speed_10m_max", "wind_gusts_10m_max", "weather_code"],
 
         "hourly": ["weather_code", "temperature_2m"],
         "timezone": "auto",
-        "forecast_hours": 24
+        "forecast_hours": 24,
+        "forecast_days": 10,
+        "timeformat": "unixtime"
     })
 
 // open meteo organizes response variables by the position of the parameter in the array
@@ -65,17 +68,19 @@ export const WeatherProvider = ({ children }) => {
             let temp = {}
 
             for (const key in params){
-                temp[key] = {}
+                if (Array.isArray(params[key])){
+                    temp[key] = {}
 
-                for (let i = 0; params[key] && i < params[key].length; i++){
-                    temp[key][params[key][i]] = i
+                    for (let i = 0; params[key] && i < params[key].length; i++){
+                        temp[key][params[key][i]] = i
+                    }
                 }
             }
             return (temp)
         }
         )
-        // console.log(weather.hourly().variables(0).valuesArray())
     }, [params])
+
 
     return <WeatherContext.Provider 
         value={{

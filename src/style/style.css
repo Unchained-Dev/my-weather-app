@@ -20,7 +20,10 @@ body.light{
     background-color: rgb(255, 179, 38);
 }
 
-
+.grid {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 
