@@ -27,7 +27,11 @@ export const WeatherProvider = ({ children }) => {
                     "rain_sum", "showers_sum", "snowfall_sum", "precipitation_hours", "uv_index_max",
                     "precipitation_probability_max", "wind_speed_10m_max", "wind_gusts_10m_max", "weather_code"],
 
-        "hourly": ["weather_code", "temperature_2m"],
+        "hourly": [
+            "temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation_probability", "precipitation", 
+            "rain", "showers", "snowfall", "snow_depth", "weather_code", "cloud_cover", "visibility", "wind_speed_10m", 
+            "wind_direction_10m", "wind_gusts_10m", "uv_index", "is_day",
+        ],
         "timezone": "auto",
         "forecast_hours": 24,
         "forecast_days": 10,

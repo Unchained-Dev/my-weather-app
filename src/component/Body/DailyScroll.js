@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import {SettingsContext} from '../../contexts/settings_context'
 import {WeatherContext} from '../../contexts/weather_context'
+import {getNextTenDays} from '../../utils/utils'
 
 export default function DailyScroll() {
     const { theme } = useContext(SettingsContext)
@@ -39,22 +40,9 @@ export default function DailyScroll() {
     const datetime = date? new Date(date * 1000) : undefined
 
     let dailyMap;
-    const getNextTenDays = (today) => {
-        const daysArray = [];
-    
-        for (let i = 0; i < 10; i++) {
-            const nextDay = new Date(today);
-            nextDay.setDate(today.getUTCDate() + i);
-            daysArray.push(nextDay);
-        }
-    
-        return daysArray;
-    }
 
     dailyMap = datetime ? getNextTenDays(datetime) : 
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    dailyMap[0].toUTCString && console.log(dailyMap[0].toUTCString())
-
 
     let dailyRend = dailyMap.map(element=>{
         let day = element.getUTCDay ? element.getUTCDate() : 0;
@@ -78,7 +66,6 @@ export default function DailyScroll() {
         )
     })
 
-    console.log(isDragging)
     return(
         <div className={"daily--container " + theme}>
             <h3>Daily Forecast</h3>
