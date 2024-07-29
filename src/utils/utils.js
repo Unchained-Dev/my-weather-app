@@ -42,3 +42,12 @@ export const getNextTenDays = (today) => {
 
     return daysArray;
 }
+
+export const getData = (raw, format) => {
+    return (
+        Object.fromEntries(
+            Object.entries(format).map(([key, value]) => {
+            return [key, raw.variables(value).valuesArray()]
+        }))
+    )
+}

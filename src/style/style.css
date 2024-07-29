@@ -12,6 +12,13 @@ body.light{
     background-color: white;
 }
 
+a {
+    user-select: none;
+    -webkit-user-drag: none;
+    color: white;
+    text-decoration: none;
+}
+
 .dark {
     background-color: black;
 }

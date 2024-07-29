@@ -14,6 +14,7 @@ export default function Details(){
 
     let day = today ? today.getUTCDate() : 0;
     let month = today ? today.getUTCMonth() : 0;
+
     day = day < 10 ? `0${day}` : day;
     month = month < 10 ? `0${month}` : month;
 

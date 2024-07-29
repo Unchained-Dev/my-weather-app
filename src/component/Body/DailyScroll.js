@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import {SettingsContext} from '../../contexts/settings_context'
 import {WeatherContext} from '../../contexts/weather_context'
 import {getNextTenDays} from '../../utils/utils'
+import { getData } from "../../utils/utils";
+import descriptions from '../../resources/descriptions.json'
+import { NavLink } from "react-router-dom";
 
 export default function DailyScroll() {
     const { theme } = useContext(SettingsContext)
-    const { daily, utcOffsetSeconds } = useContext(WeatherContext)
+    const { daily, utcOffsetSeconds, paramsMap } = useContext(WeatherContext)
     const scrollableDivRef = React.useRef(null);
     const [isDragging, setIsDragging] = React.useState(false);
     const [startPosition, setStartPosition] = React.useState(0);
@@ -20,6 +23,7 @@ export default function DailyScroll() {
     }
 
     function handleMouseMove(event){
+        console.log(isDragging)
         if (isDragging) {
             event.preventDefault();
             const scrollX = event.clientX - startPosition;
@@ -37,32 +41,40 @@ export default function DailyScroll() {
     }
 
     const date = daily ? Number(daily.time()) + utcOffsetSeconds : null
-    const datetime = date? new Date(date * 1000) : undefined
+    const datetime = date? new Date(date * 1000) : null
+    const data = daily ? getData(daily, paramsMap.daily) : null
 
     let dailyMap;
 
     dailyMap = datetime ? getNextTenDays(datetime) : 
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-    let dailyRend = dailyMap.map(element=>{
+    let dailyRend = dailyMap.map((element, index)=>{
         let day = element.getUTCDay ? element.getUTCDate() : 0;
         let month = element.getUTCMonth ? element.getUTCMonth() : 0;
         day = day < 10 ? `0${day}` : day;
         month = month < 10 ? `0${month}` : month;
-
+    
         return(
+            <NavLink
+                to={element.getDay? '/daily/' + element.getDate() : '/daily/' + index}
+                key={element.getDay? element.getDate() : element}
+                exact="true"
+            > 
                 <div 
                     className="daily--forecast" 
-                    key={element.getDay? element.getDate() : element}
                 >
                     <div className="daily--date">
                         <h1>{element.getDay? days[element.getDay()] : element}</h1>
                         <span>{ day + "/" + month }</span>
                     </div>
-                    <span className="daily--maximum">24°C</span>
-                    <span className="daily--minimum">24°C</span>
-                    <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather"></img>
+                    <span className="daily--maximum">{data ? Math.round(data.temperature_2m_max[index + 1]) + " " : 24}°C</span>
+                    <span className="daily--minimum">{data ? Math.round(data.temperature_2m_min[index + 1]) + " " : 24}°C</span>
+                    <img src={data ?
+                        descriptions[data.weather_code[index]]["day"].image:
+                        "http://openweathermap.org/img/wn/02d@2x.png"} alt="weather" draggable='false' />
                 </div>
+            </NavLink>
         )
     })
 
@@ -75,6 +87,7 @@ export default function DailyScroll() {
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseUp}
             >
                 {dailyRend}
             </div>

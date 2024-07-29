@@ -34,7 +34,7 @@ export const WeatherProvider = ({ children }) => {
         ],
         "timezone": "auto",
         "forecast_hours": 24,
-        "forecast_days": 10,
+        "forecast_days": 11,
         "timeformat": "unixtime"
     })
 
@@ -90,10 +90,10 @@ export const WeatherProvider = ({ children }) => {
         value={{
             country,
             city,
-            current: weather && weather.current(),
-            daily: weather && weather.daily(),
-            hourly: weather && weather.hourly(),
-            utcOffsetSeconds: weather && weather.utcOffsetSeconds(),
+            current: weather ? weather.current() : null,
+            daily: weather ? weather.daily() : null,
+            hourly: weather ? weather.hourly() : null,
+            utcOffsetSeconds: weather ? weather.utcOffsetSeconds() : null,
             params,
             paramsMap,
             changeCountry: (value) => setCountry(value),

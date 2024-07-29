@@ -46,6 +46,7 @@ export default function Navbar(){
         }
     }
 
+    console.log(isDragging)
     return(
         <ul
             className={"nav--buttons-container " + theme}
